@@ -5,4 +5,4 @@
 [node name="Monde" type="Node2D"]
 
 [node name="Joueur" parent="." instance=ExtResource("1_onrvu")]
-position = Vector2(79, 52)
+position = Vector2(2, -4)

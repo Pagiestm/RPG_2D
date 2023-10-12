@@ -4,7 +4,7 @@ using System;
 public partial class joueur : CharacterBody2D
 {
 [Export]
-	public int Speed { get; set; } = 115;
+	public int Speed { get; set; } = 55;
 	private AnimationPlayer animations;
 	
 	public override void _Ready()

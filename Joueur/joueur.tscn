@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp02y4rh61u6r"]
+[gd_scene load_steps=10 format=3 uid="uid://bp02y4rh61u6r"]
 
 [ext_resource type="Texture2D" uid="uid://so5fwjvodmeg" path="res://art/SpriteSheet.png" id="1_c1ytt"]
 [ext_resource type="Script" path="res://Joueur/joueur.cs" id="1_jb3ex"]
@@ -69,7 +69,7 @@ tracks/0/keys = {
 "values": [Vector2i(3, 1), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_ha74r"]
+[sub_resource type="Animation" id="Animation_u7lef"]
 resource_name = "walkUp"
 length = 0.8
 loop_mode = 1
@@ -92,15 +92,21 @@ _data = {
 "walkDown": SubResource("Animation_rvkiu"),
 "walkLeft": SubResource("Animation_jxpan"),
 "walkRight": SubResource("Animation_cif1g"),
-"walkUp": SubResource("Animation_ha74r")
+"walkUp": SubResource("Animation_u7lef")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kx138"]
+radius = 9.0
+height = 22.0
+
 [node name="Joueur" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_jb3ex")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(104, 58)
+position = Vector2(1, -9)
 texture = ExtResource("1_c1ytt")
 hframes = 4
 vframes = 7
@@ -109,3 +115,7 @@ vframes = 7
 libraries = {
 "": SubResource("AnimationLibrary_mgmim")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -9)
+shape = SubResource("CapsuleShape2D_kx138")

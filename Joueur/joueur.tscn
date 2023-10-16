@@ -102,6 +102,7 @@ height = 22.0
 [node name="Joueur" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 3
 script = ExtResource("1_jb3ex")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

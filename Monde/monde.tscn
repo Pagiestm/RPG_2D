@@ -5387,7 +5387,8 @@ texture = ExtResource("5_mhswj")
 31:22/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_3t0ku"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_h7h3u")
 sources/0 = SubResource("TileSetAtlasSource_syrck")
 sources/1 = SubResource("TileSetAtlasSource_3sn6o")
@@ -5424,4 +5425,4 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Cyclope" parent="TileMap" instance=ExtResource("6_o0l0q")]
-position = Vector2(96, 49)
+position = Vector2(88, 56)

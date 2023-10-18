@@ -51,4 +51,12 @@ public partial class joueur : CharacterBody2D
 		MoveAndSlide();
 		UpdateAnimation();
 	}
+	
+	private void _on_hurt_box_area_entered(Area2D area)
+	{
+		if (area.Name == "hitBox")
+		{
+			GD.Print(area.GetParent().Name);
+		}
+	}
 }

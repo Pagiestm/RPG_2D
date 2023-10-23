@@ -5418,9 +5418,8 @@ position = Vector2(-19, 9)
 [node name="Follow cam" type="Camera2D" parent="TileMap/Joueur"]
 limit_left = 0
 limit_top = 0
-limit_right = 480
-limit_bottom = 288
-limit_smoothed = true
+limit_right = 576
+limit_bottom = 336
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

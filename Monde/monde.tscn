@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dw27nbrx1xtud"]
+[gd_scene load_steps=14 format=3 uid="uid://dw27nbrx1xtud"]
 
 [ext_resource type="PackedScene" uid="uid://bp02y4rh61u6r" path="res://Joueur/joueur.tscn" id="1_onrvu"]
 [ext_resource type="Texture2D" uid="uid://dxeo1s5yaepka" path="res://art/TilesetFloor.png" id="2_72k4a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cwq6mtiao5xfm" path="res://art/TilesetNature.png" id="4_bd37u"]
 [ext_resource type="Texture2D" uid="uid://ci7iim2bal2ll" path="res://art/TilesetHouse.png" id="5_mhswj"]
 [ext_resource type="PackedScene" uid="uid://ce873oh2etcnx" path="res://enemies/enemies.tscn" id="6_o0l0q"]
+[ext_resource type="PackedScene" uid="uid://cl8ncrciew8uf" path="res://gui/hearts_container.tscn" id="7_nef1i"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h7h3u"]
 
@@ -5426,3 +5427,13 @@ drag_vertical_enabled = true
 
 [node name="Cyclope" parent="TileMap" instance=ExtResource("6_o0l0q")]
 position = Vector2(88, 56)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="heartsContainer" parent="CanvasLayer" instance=ExtResource("7_nef1i")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_right = 0.0
+grow_horizontal = 0

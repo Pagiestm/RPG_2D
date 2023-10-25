@@ -5424,8 +5424,9 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Cyclope" parent="TileMap" instance=ExtResource("6_o0l0q")]
+[node name="Cyclope" parent="TileMap" node_paths=PackedStringArray("player") instance=ExtResource("6_o0l0q")]
 position = Vector2(88, 56)
+player = NodePath("../Joueur")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

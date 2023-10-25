@@ -3,12 +3,14 @@ using System;
 
 public partial class joueur : CharacterBody2D
 {
-[Export]
+	[Export]
 	public int Speed { get; set; } = 55;
 	private AnimationPlayer animations;
 	[Export]
 	public int MaxHealth { get; set; } = 3;
 	private int currentHealth;
+	
+	public Vector2 PlayerPosition { get; private set; }
 	
 	public override void _Ready()
 	{
@@ -54,6 +56,8 @@ public partial class joueur : CharacterBody2D
 		GetInput();
 		MoveAndSlide();
 		UpdateAnimation();
+		
+		PlayerPosition = GlobalPosition;
 	}
 	
 	//Détection enemies

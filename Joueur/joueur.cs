@@ -6,16 +6,17 @@ public partial class joueur : CharacterBody2D
 	[Export]
 	public int Speed { get; set; } = 55;
 	private AnimationPlayer animations;
+	
 	[Export]
-	public int MaxHealth { get; set; } = 3;
-	private int currentHealth;
+	private Life _life = null;
+	
+	public Life Life => _life;
 	
 	public Vector2 PlayerPosition { get; private set; }
 	
 	public override void _Ready()
 	{
 		animations = GetNode<AnimationPlayer>("AnimationPlayer");
-		currentHealth = MaxHealth;
 	}
 
 	public void GetInput()
@@ -58,20 +59,5 @@ public partial class joueur : CharacterBody2D
 		UpdateAnimation();
 		
 		PlayerPosition = GlobalPosition;
-	}
-	
-	//Détection enemies
-	private void _on_hurt_box_area_entered(Area2D area)
-	{
-		if (area.Name == "hitBox")
-		{
-			GD.Print(area.GetParent().Name);
-			currentHealth -= 1;
-			if (currentHealth < 0)
-			{
-				currentHealth = MaxHealth;
-			}
-			GD.Print(currentHealth);
-		}
 	}
 }

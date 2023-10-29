@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ce873oh2etcnx"]
+[gd_scene load_steps=22 format=3 uid="uid://ce873oh2etcnx"]
 
 [ext_resource type="Script" path="res://enemies/cyclope.cs" id="1_8ci4u"]
 [ext_resource type="Texture2D" uid="uid://cj6l0wvuejbbl" path="res://art/cyclope.png" id="2_ba664"]
@@ -141,9 +141,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3stn"]
 size = Vector2(16, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jx4o"]
-size = Vector2(16, 15)
-
 [sub_resource type="CSharpScript" id="CSharpScript_1kw4c"]
 script/source = "using Godot;
 
@@ -185,12 +182,6 @@ animation = &"walkDown"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_c3stn")
-
-[node name="hitBox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
-position = Vector2(0, -7.5)
-shape = SubResource("RectangleShape2D_6jx4o")
 
 [node name="Node2D" type="Node2D" parent="."]
 script = SubResource("CSharpScript_1kw4c")

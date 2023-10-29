@@ -19,6 +19,8 @@ public partial class cyclope : CharacterBody2D
 	public Vector2 PlayerPosition { get; private set; }
 	[Export] 
 	private float _attackDistance = 30f;
+	[Export] 
+	private float _attackDamagePerSeconds = 10f;
 	/*[Export]
 	private float _followDistance = 50f;
 	private bool isMoving = true; // Variable pour suivre l'état du mouvement */
@@ -42,7 +44,7 @@ public partial class cyclope : CharacterBody2D
 		//GD.Print(distanceToPlayer);
 		if (distanceToPlayer < _attackDistance)
 		{
-			Attack();
+			Attack(delta);
 			return;
 		} else {
 			GD.Print("Je suis loin");
@@ -58,9 +60,11 @@ public partial class cyclope : CharacterBody2D
 		}*/
 	}
 
-	private void Attack()
+	private void Attack(double delta)
 	{
 		GD.Print("attaque");
+		
+		player.Life.Damage((float)delta * _attackDamagePerSeconds);
 	}
 
 	/*private void GoToPlayer(Vector2 deltaPlayerPosition)

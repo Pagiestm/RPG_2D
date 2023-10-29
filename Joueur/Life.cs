@@ -2,10 +2,14 @@ using Godot;
 
 public partial class Life : Node
 {
+	[Signal] public delegate void OnLifeChangedEventHandler(float newLife);
+	
 	[Export] 
 	private float _maxLife = 100f;
 	
 	private float _currentLife = 0;
+	
+	public float LifePrecent => _currentLife / _maxLife;
 	
 	 public void Damage(float amount)
 	{
@@ -26,6 +30,9 @@ public partial class Life : Node
 	{
 		_currentLife += amount;
 		_currentLife = Mathf.Clamp(_currentLife, 0f, _maxLife);
+		
+		//Appeler le signal
+		EmitSignal(SignalName.OnLifeChanged, _currentLife);
 	}
 	
 	public override void _PhysicsProcess(double delta)

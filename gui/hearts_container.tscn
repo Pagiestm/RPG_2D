@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cl8ncrciew8uf"]
-
-[node name="heartsContainer" type="HBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 2

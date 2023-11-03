@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bp02y4rh61u6r"]
+[gd_scene load_steps=16 format=3 uid="uid://bp02y4rh61u6r"]
 
 [ext_resource type="Texture2D" uid="uid://so5fwjvodmeg" path="res://art/SpriteSheet.png" id="1_c1ytt"]
 [ext_resource type="Script" path="res://Joueur/joueur.cs" id="1_jb3ex"]
 [ext_resource type="PackedScene" uid="uid://de4ppryvdti57" path="res://Joueur/katana.tscn" id="3_n8dgk"]
+[ext_resource type="Script" path="res://Joueur/weapon.cs" id="3_ssqcq"]
 
 [sub_resource type="Animation" id="Animation_ukvt4"]
 length = 0.001
@@ -311,5 +312,6 @@ shape = SubResource("RectangleShape2D_wlhng")
 [node name="weapon" type="Node2D" parent="."]
 position = Vector2(6, -1)
 rotation = 4.88692
+script = ExtResource("3_ssqcq")
 
 [node name="Katana" parent="weapon" instance=ExtResource("3_n8dgk")]

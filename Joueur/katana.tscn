@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://de4ppryvdti57"]
+[gd_scene load_steps=4 format=3 uid="uid://de4ppryvdti57"]
 
 [ext_resource type="Texture2D" uid="uid://b0nqdmn8ywnkr" path="res://art/SpriteInHand.png" id="1_huqd3"]
+[ext_resource type="Script" path="res://Joueur/katana.cs" id="1_qhqun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocwee"]
 size = Vector2(5, 8)
 
 [node name="Katana" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_qhqun")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

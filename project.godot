@@ -76,3 +76,8 @@ attack={
 
 2d_physics/layer_1="joueur"
 2d_physics/layer_2="enemies"
+2d_physics/layer_3="hitBoxes"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

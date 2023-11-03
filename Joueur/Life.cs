@@ -37,6 +37,6 @@ public partial class Life : Node
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(_currentLife);
+		//GD.Print(_currentLife);
 	}
 }

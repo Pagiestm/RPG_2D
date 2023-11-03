@@ -147,7 +147,6 @@ public partial class cyclope : CharacterBody2D
 
 	private async void _on_hurt_box_area_entered(Area2D area)
 	{
-		if (area == GetNode<Area2D>("hurtBox")) return;
 		isDead = true;
 		GD.Print("cyclope hit");
 		animations.Play("death");

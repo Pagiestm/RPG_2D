@@ -5434,14 +5434,6 @@ script = ExtResource("6_ise8l")
 position = Vector2(88, 56)
 player = NodePath("../Joueur")
 
-[node name="Cyclope2" parent="TileMap" node_paths=PackedStringArray("player") instance=ExtResource("6_o0l0q")]
-position = Vector2(16, -24)
-player = NodePath("../Joueur")
-
-[node name="Cyclope3" parent="TileMap" node_paths=PackedStringArray("player") instance=ExtResource("6_o0l0q")]
-position = Vector2(-16, 104)
-player = NodePath("../Joueur")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" node_paths=PackedStringArray("_life") instance=ExtResource("7_su5of")]

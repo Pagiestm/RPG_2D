@@ -4,21 +4,23 @@ using System;
 public partial class cyclope : CharacterBody2D
 {
 	[Export]
-	public int Speed { get; set; } = 40;
+	public int Speed { get; set; } = 30;
 	//[Export]
 	//public float Limit { get; set; } = 0.5f;
 	
-	private AnimatedSprite2D animations;
+	private AnimationPlayer animations;
 	
 	//private Vector2 startPosition;
 	//private Vector2 endPosition;
+	
+	private bool isDead = false;
 	
 	
 	[Export]
 	private joueur player; // Référence au joueur
 	public Vector2 PlayerPosition { get; private set; }
 	[Export] 
-	private float _attackDistance = 30f;
+	private float _attackDistance = 15f;
 	[Export] 
 	private float _attackDamagePerSeconds = 10f;
 	[Export]
@@ -29,7 +31,7 @@ public partial class cyclope : CharacterBody2D
 	{
 		/*startPosition = Position;
 		endPosition = startPosition + new Vector2(0, 3 * 16);*/
-		animations = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		animations = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 	
 	//Distance du joueur par rapport à un enemie
@@ -47,7 +49,7 @@ public partial class cyclope : CharacterBody2D
 			Attack(delta);
 			return;
 		} else {
-			GD.Print("Je suis loin");
+			//GD.Print("Je suis loin");
 		}
 		// Ajoutez une nouvelle condition pour vérifier la proximité du joueur
 		if (distanceToPlayer < _followDistance)
@@ -62,14 +64,14 @@ public partial class cyclope : CharacterBody2D
 
 	private void Attack(double delta)
 	{
-		GD.Print("attaque");
+		//GD.Print("attaque");
 		
 		player.Life.Damage((float)delta * _attackDamagePerSeconds);
 	}
 
 	private void GoToPlayer(Vector2 deltaPlayerPosition)
 	{
-		GD.Print("Go To");
+		//GD.Print("Go To");
 		Vector2 directionToPlayer = deltaPlayerPosition.Normalized();
 		Velocity = directionToPlayer * Speed;
 	}
@@ -137,8 +139,19 @@ public partial class cyclope : CharacterBody2D
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		if (isDead) return;
 		//UpdateVelocity();
 		MoveAndSlide();
 		UpdateAnimation();
+	}
+
+	private async void _on_hurt_box_area_entered(Area2D area)
+	{
+		if (area == GetNode<Area2D>("hurtBox")) return;
+		isDead = true;
+		GD.Print("cyclope hit");
+		animations.Play("death");
+		await ToSignal(animations, "animation_finished");
+		QueueFree();
 	}
 }

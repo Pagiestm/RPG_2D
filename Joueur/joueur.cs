@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public partial class joueur : CharacterBody2D
 {
@@ -11,6 +12,8 @@ public partial class joueur : CharacterBody2D
 	
 	[Export]
 	private Life _life = null;
+	
+	private List<cyclope> cyclopes = new List<cyclope>();
 	
 	public Life Life => _life;
 	
@@ -33,12 +36,35 @@ public partial class joueur : CharacterBody2D
 		Velocity = inputDirection * Speed;
 
 		if (Input.IsActionJustPressed("attack"))
+	{
+		animations.Play("attack" + lastAnimDirection);
+		isAttacking = true;
+		weapon.Visible = true;
+		CallDeferred(nameof(WaitForAttackAnimation));
+
+		// Détecter les cyclopes touchés par l'attaque
+		foreach (cyclope currentCyclope in cyclopes)
 		{
-			animations.Play("attack" + lastAnimDirection);
-			isAttacking = true;
-			weapon.Visible = true;
-			CallDeferred(nameof(WaitForAttackAnimation));
+			if (IsCyclopeInRange(currentCyclope))
+			{
+				currentCyclope.Attacked(25); // 25 est la valeur des dégâts
+			}
 		}
+	}
+}
+
+private bool IsCyclopeInRange(cyclope currentCyclope)
+{
+	float attackRange = 20.0f; // Ajustez la portée de l'attaque selon vos besoins
+	float distanceToCyclope = (currentCyclope.GlobalPosition - GlobalPosition).Length();
+
+	return distanceToCyclope < attackRange;
+}
+	
+	// Ajout d'une méthode pour ajouter un cyclope à la liste
+	public void AddCyclope(cyclope newCyclope)
+	{
+		cyclopes.Add(newCyclope);
 	}
 
 	private async void WaitForAttackAnimation()

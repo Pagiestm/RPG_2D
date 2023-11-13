@@ -5,13 +5,8 @@ public partial class cyclope : CharacterBody2D
 {
 	[Export]
 	public int Speed { get; set; } = 30;
-	//[Export]
-	//public float Limit { get; set; } = 0.5f;
 	
 	private AnimationPlayer animations;
-	
-	//private Vector2 startPosition;
-	//private Vector2 endPosition;
 	
 	private bool isDead = false;
 	
@@ -26,12 +21,16 @@ public partial class cyclope : CharacterBody2D
 	[Export]
 	private float _followDistance = 50f;
 	private bool isMoving = true; // Variable pour suivre l'état du mouvement 
-
+	private int health = 100;
+	
+	 public ProgressBar ProgressBar { get; private set; }
+	
 	public override void _Ready()
 	{
-		/*startPosition = Position;
-		endPosition = startPosition + new Vector2(0, 3 * 16);*/
 		animations = GetNode<AnimationPlayer>("AnimationPlayer");
+		ProgressBar = GetNode<ProgressBar>("ProgressBar");
+		
+		player.AddCyclope(this);
 	}
 	
 	//Distance du joueur par rapport à un enemie
@@ -78,28 +77,21 @@ public partial class cyclope : CharacterBody2D
 
 	public void StopMoving()
 	{
-	isMoving = false;
-	Velocity = Vector2.Zero; // Arrêtez le mouvement en définissant la vitesse à zéro
+		isMoving = false;
+		Velocity = Vector2.Zero; // Arrêtez le mouvement en définissant la vitesse à zéro
 	}
-
 	
-	/*public void ChangeDirection()
+	public void Attacked(float damage)
 	{
-		var tempEnd = endPosition;
-		endPosition = startPosition;
-		startPosition = tempEnd;
-	}
-
-	public void UpdateVelocity()
-	{
-		var moveDirection = endPosition - Position;
-		if (moveDirection.Length() < Limit)
+		health -= (int)damage;
+		//GD.Print(health);
+		ProgressBar.Value = Mathf.Max(0, health);
+		if (health <= 0)
 		{
-			ChangeDirection();
+			isDead = true;
+			animations.Play("death");
 		}
-		
-		Velocity = moveDirection.Normalized() * Speed;
-	}*/
+	}
 
 	public void UpdateAnimation()
 	{
@@ -139,18 +131,14 @@ public partial class cyclope : CharacterBody2D
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		if (isDead && ! animations.IsPlaying()) // Vérifie si l'animation de mort est terminée
+		{
+			QueueFree(); // Libère la mémoire de l'ennemi
+			return;
+		}
+		
 		if (isDead) return;
-		//UpdateVelocity();
 		MoveAndSlide();
 		UpdateAnimation();
-	}
-
-	private async void _on_hurt_box_area_entered(Area2D area)
-	{
-		isDead = true;
-		GD.Print("cyclope hit");
-		animations.Play("death");
-		await ToSignal(animations, "animation_finished");
-		QueueFree();
 	}
 }

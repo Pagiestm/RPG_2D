@@ -174,7 +174,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3stn"]
-size = Vector2(16, 14)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgw5q"]
 size = Vector2(16, 15)
@@ -197,7 +197,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_c3stn")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -217,4 +217,10 @@ position = Vector2(0, -7)
 texture = ExtResource("3_ep4ss")
 hframes = 6
 
-[connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = -22.0
+offset_top = -47.0
+offset_right = 22.0
+offset_bottom = -20.0
+value = 100.0
